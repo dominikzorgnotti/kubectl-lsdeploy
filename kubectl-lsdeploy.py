@@ -14,27 +14,20 @@ prettytable -> and pretty table to create nice output"""
 """ Create an empty list that holds our dicts with the information """
 Podlist = list()
 
-# Configs can be set in Configuration class directly or using helper utility
+""" Configs can be set in Configuration class directly or using helper utility """
 kubernetes.config.load_kube_config()
-
-# Get all the information from the API
 GetK8sConfiguration = kubernetes.client.Configuration()
 GetV1ApiApps = kubernetes.client.AppsV1Api(
     kubernetes.client.ApiClient(GetK8sConfiguration))
 GetV1ApiCore = kubernetes.client.CoreV1Api(
     kubernetes.client.ApiClient(GetK8sConfiguration))
 
-# Use helper objects to store the individual information
-# Replicaset provides info about the ReplicasetName, Deployment and NameSpace
+""" From Replicasets and Pods we can gather all the info we need """
 GetAllReplicaSets = GetV1ApiApps.list_replica_set_for_all_namespaces(
     watch=False)
 GetAllPods = GetV1ApiCore.list_pod_for_all_namespaces(watch=False)
 
-""" Iterate through all pods and store the info about
-- the name of the pod
-- NameSpace
-- Replicaset 
-- and Node"""
+""" Iterate through all pods and store the info about the name of the pod, NameSpace, Replicaset and Node"""
 for MyPodItems in GetAllPods.items:
     if (MyPodItems.metadata.owner_references) and (MyPodItems.metadata.owner_references[0].kind == "ReplicaSet"):
         MyPodReplicaSet = MyPodItems.metadata.owner_references[0].name
@@ -42,13 +35,12 @@ for MyPodItems in GetAllPods.items:
     Podlist.append({"PodName": MyPodItems.metadata.name, "PodNameSpace": MyPodItems.metadata.namespace,
                     "PodReplicaSet": MyPodReplicaSet, "PodHostingNode": MyPodItems.status.host_ip})
 
+""" Iterate through all Replicasets and match these to the pods. From the replicaset we supply the deployment info to the dict """
 for MyReplicaItems in GetAllReplicaSets.items:
     for MyPod in Podlist:
         if MyPod["PodReplicaSet"] == MyReplicaItems.metadata.name:
             MyPod.update(
                 {"PodDeployment": MyReplicaItems.metadata.owner_references[0].name})
-
-
 
 """Print table based on the provided list with deployment information"""
 OutputTable = PrettyTable()
