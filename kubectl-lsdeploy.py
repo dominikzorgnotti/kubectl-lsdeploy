@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import kubernetes
 from prettytable import PrettyTable  # pip3 install PTable
 
@@ -5,12 +6,10 @@ from prettytable import PrettyTable  # pip3 install PTable
 Author: Dominik Zorgnotti (@dominikzorgnotti)
 Version: 1.0
 Summary: Print aggregated information about the dependencies of deployments and pods
-"""
 
-""" Import modules:
+Import modules:
 kubernetes -> Kubernetes Python client libraries: get all the required information
 prettytable -> and pretty table to create nice output"""
-
 
 """ Create an empty list that holds our dicts with the information """
 Podlist = list()
