@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import kubernetes
-from prettytable import PrettyTable  # pip3 install PTable
+from prettytable import PrettyTable
 
 """
 Author: Dominik Zorgnotti (@dominikzorgnotti)
