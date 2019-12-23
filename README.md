@@ -4,11 +4,11 @@ Plugin for kubectl written in Python.
 Queries the kubernetes API and prints an overview of
 - namespaces
 - deployment
-- replicaset
-- pod
-- node
+- replica sets
+- pods
+- nodes
 
-Mostly PEP-8 compliant but otherwise way to go when it comes to code quality.
+Mostly PEP-8 compliant but otherwise "way to go" when it comes to code quality.
 
 ## Installation
 
@@ -18,11 +18,11 @@ git clone https://github.com/dominikzorgnotti/kubectl-lsdeploy
 cd kubectl-lsdeploy
 pip3 install -r requirements.txt
 ```
-Move the main script to an place that is in your path
+Move the main script to an place that is in your path, e.g.:
 ```bash
 mv kubectl-lsdeploy.py /usr/local/bin
 ```
-Verify that kubectll recognize it as a plugin
+Verify that kubectl recognizes the plugin
 ```bash
 kubectl plugin list
 ```
