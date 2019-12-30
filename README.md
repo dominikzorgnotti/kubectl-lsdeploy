@@ -7,6 +7,7 @@ Queries the kubernetes API and prints an overview of
 - replica sets
 - pods
 - nodes
+
 Based on [Issue #72794](https://github.com/kubernetes/kubernetes/issues/72794) I didn't find a built-in function.
 
 Mostly PEP-8 compliant but otherwise "way to go" when it comes to code quality.
