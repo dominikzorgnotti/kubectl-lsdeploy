@@ -26,7 +26,6 @@ parser.add_argument("-o", "--output",
                 choices=["table", "json", "yaml"],
                 default="table", type=str, help="Output format: table (default), json or yaml")
 args = parser.parse_args()
-print(args)
 
 def QueryKubernetesApi(KubernetesClient):
     """ Query the Kubernetes API and return the results as dict """
@@ -76,7 +75,6 @@ def OutputAsJson (ProcessedApiResults):
     print("Return as JSON not implemented yet")
 
 def main(output):
-    print(locals())  # Debugging 
     """ initialise K8s client """
     kubernetes.config.load_kube_config()
     GetKubernetesConfiguration = kubernetes.client.Configuration()
