@@ -1,4 +1,7 @@
 # kubectl-lsdeploy
+
+-> **Good news, someone made a real project for this use case. Have a look at [tree](https://github.com/ahmetb/kubectl-tree) which looks awesome**
+
 ## Summary
 Plugin for kubectl written in Python. 
 Queries the kubernetes API and prints an overview of
